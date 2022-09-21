@@ -1,6 +1,4 @@
-> 参考 [mixi-inc/iOSTraining 1.4 UIViewController2 ModalViewController (storyboard)](https://github.com/mixi-inc/iOSTraining/wiki/1.4-UIViewController2-ModalViewController-(storyboard))
 
-参考 : [UIViewController Class Reference](http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html) | [View Controller Programming Guide for iOS](http://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/ViewControllerPGforiOS.pdf)
 
 # 概要
 
@@ -407,3 +405,8 @@ segue経由で画面を表示するときのdelegateの設定は `prepare(for:se
 ##### 回答
 
 回答については [samples/day1/sample1-4-1/VCCustomization](../../samples/day1/sample1-4-1) をごらんください。
+
+# 参考
+- [UIViewController Class Reference](http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html) | 
+- [View Controller Programming Guide for iOS](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/TheViewControllerHierarchy.html#//apple_ref/doc/uid/TP40007457-CH33-SW1)
+- [mixi-inc/iOSTraining 1.4 UIViewController2 ModalViewController (storyboard)](https://github.com/mixi-inc/iOSTraining/wiki/1.4-UIViewController2-ModalViewController-(storyboard))
