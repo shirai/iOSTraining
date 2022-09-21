@@ -2,8 +2,8 @@
 
 # 概要
 
-UIViewControllerには他のViewControllerと連携して新しいViewControllerを表示するなどの役割もあります。
-連携のやり方には代表的なものに Modal, Navigation Controller, TabBarController などの方法があり、この章ではModalを用いた方法を解説します。
+UIViewControllerには他のViewControllerと連携して新しいViewControllerを表示するなどの役割もあります。  
+連携のやり方には代表的なものに Modal, Navigation Controller, TabBarController などの方法があり、この章ではModalを用いた方法を解説します。  
 
 Modal View Controllerは「現在のViewControllerで行っている操作を一時中断して新しいViewControllerを表示する」というケースで利用されます。公式ドキュメントには以下のようなケースで使うことを想定しています。
 
@@ -410,3 +410,4 @@ segue経由で画面を表示するときのdelegateの設定は `prepare(for:se
 - [UIViewController Class Reference](http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html) | 
 - [View Controller Programming Guide for iOS](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/TheViewControllerHierarchy.html#//apple_ref/doc/uid/TP40007457-CH33-SW1)
 - [mixi-inc/iOSTraining 1.4 UIViewController2 ModalViewController (storyboard)](https://github.com/mixi-inc/iOSTraining/wiki/1.4-UIViewController2-ModalViewController-(storyboard))
+- https://developer.apple.com/design/human-interface-guidelines/patterns/modality/
