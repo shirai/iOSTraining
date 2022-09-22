@@ -243,7 +243,7 @@ Delegateパターンを用いる際、Swiftでは **プロトコル** という�
 
 ```swift
 // SecondViewController.swift 内
-protocol SecondViewControllerDelegate: class {
+protocol SecondViewControllerDelegate: AnyObject {
     func secondViewController(_ viewController: SecondViewController, didTapButton button: UIButton)
 }
 ```
