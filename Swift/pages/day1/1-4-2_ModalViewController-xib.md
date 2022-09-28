@@ -1,6 +1,7 @@
 # 概要
 
-ModalViewController は一時的にユーザの操作の中に割り込んで表示させるもの。公式ドキュメントには以下のようなケースで使うことを想定している。
+ModalViewController は一時的にユーザの操作の中に割り込んで表示させるもの。  
+公式ドキュメントには以下のようなケースで使うことを想定している。
 
 - ユーザから直ちに情報を収集するため
 - 何らかのコンテンツを一時的に表示するため
@@ -8,7 +9,8 @@ ModalViewController は一時的にユーザの操作の中に割り込んで表
 - デバイスの向きに応じて代替のインターフェイスを実装するため
 - 特殊なアニメーショントランジションを使用する(またはトランジションなしの)新しいビュー 階層を表示するため
 
-UIViewController は一つの ModalView を表示することが可能。そのときに、Modal を表示する ViewController と ModalViewController には親子関係が出来る。
+UIViewController は一つの ModalView を表示することが可能。  
+そのときに、Modal を表示する ViewController と ModalViewController には親子関係が出来る。
 
 > ![modal1](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_SlideTransition_fig_8-1_2x.png)
 >
@@ -62,17 +64,19 @@ public enum UIModalPresentationStyle : Int {
 ```swift
 dismiss(animated: true, completion: nil)
 ```
-このメソッドを呼べば、トップレベルの ModalViewController が dismiss されます。公式ドキュメントには原則として呼び出した ViewControlelr が消すべきと書いてあります。状況に応じて使い分けてください。
+このメソッドを呼べば、トップレベルの ModalViewController が dismiss されます。  
+公式ドキュメントには原則として呼び出した ViewControlelr が消すべきと書いてあります。状況に応じて使い分けてください。
 
 ![dismissViewController](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/1.5/dismissViewController.png)
 
 ## delegate と protocol
 
-ChildViewController で閉じるボタンを押したことを ViewControlelr が知る必要があります。このようにある VC から VC へ何らかの通知を送る手段の一つとして delegate があります。
+ChildViewController で閉じるボタンを押したことを ViewControlelr が知る必要があります。このようにある ViewControlelr から ViewControlelr へ何らかの通知を送る手段の一つとして delegate があります。
 
 ![delegate](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/1.5/delegate.png)
 
-delegate とはあるクラスで処理できない処理を他のクラスに代わりに処理させるパターンです。この場合、ChildViewController でボタンが押されたイベントだけキャッチし、ChildViewController を閉じる処理は ViewController に任せることにします。
+delegate とはあるクラスで処理できない処理を他のクラスに代わりに処理させるパターンです。  
+この場合、ChildViewController でボタンが押されたイベントだけキャッチし、ChildViewController を閉じる処理は ViewController に任せることにします。
 
 ChildViewController.swift
 ```swift
