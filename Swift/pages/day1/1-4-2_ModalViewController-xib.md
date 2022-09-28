@@ -1,7 +1,3 @@
-> 参考 [mixi-inc/iOSTraining 1.4 UIViewController2 ModalViewController](https://github.com/mixi-inc/iOSTraining/wiki/1.4-UIViewController2---ModalViewController)
-
-参考 : [UIViewController Class Reference](http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html) | [View Controller Programming Guide for iOS](http://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/ViewControllerPGforiOS.pdf)
-
 # 概要
 
 ModalViewController は一時的にユーザの操作の中に割り込んで表示させるもの。公式ドキュメントには以下のようなケースで使うことを想定している。
@@ -155,3 +151,8 @@ protocol の採用をすることで method の補完が効くようになりま
 # 注意事項
 
 Modal の 表示、非表示アニメーションが同時に起きるとアニメーションの衝突でクラッシュするので気をつけてください。
+
+# 参考
+-  [mixi-inc/iOSTraining 1.4 UIViewController2 ModalViewController](https://github.com/mixi-inc/iOSTraining/wiki/1.4-UIViewController2---ModalViewController)
+- [UIViewController Class Reference](http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html) 
+- [View Controller Programming Guide for iOS](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/PresentingaViewController.html)
