@@ -30,8 +30,8 @@ present(postViewController, animated: true, completion: nil)
 
 ## 表示オプション
 
-- modalTransitionStyle 画面遷移の方法
-
+- [画面遷移の方法](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle)
+  - modalTransitionStyle
 ```swift
 public enum UIModalTransitionStyle : Int {
     case coverVertical
@@ -41,7 +41,8 @@ public enum UIModalTransitionStyle : Int {
 }
 ```
 
-- modalPresentationStyle - iPad の場合に表示形式を変更できる
+- [表示形式の変更方法](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621355-modalpresentationstyle)
+  - modalPresentationStyle
 
 ```swift
 public enum UIModalPresentationStyle : Int {
@@ -57,7 +58,7 @@ public enum UIModalPresentationStyle : Int {
 }
 ```
 
-# 消し方と delegate
+# Modalの閉じ方と delegate
 
 ## dismissViewController
 
@@ -80,7 +81,7 @@ delegate とはあるクラスで処理できない処理を他のクラスに�
 
 ChildViewController.swift
 ```swift
-protocol ChildViewControllerDelegate: class { // [1] プロトコルの宣言
+protocol ChildViewControllerDelegate: AnyObject { // [1] プロトコルの宣言
     func childViewController(_ viewController: PostViewController, didTapCloseButton button: UIButton)
 }
 
@@ -133,7 +134,7 @@ class ViewController : UIViewController, ChildViewControllerDelegate {} // [4] p
 }
 ```
 
-### [4] protocol の採用
+### [4] protocol に準拠
 
 複数ある場合は "," でつなげます。
 
