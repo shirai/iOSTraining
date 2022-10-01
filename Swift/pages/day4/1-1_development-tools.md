@@ -14,6 +14,8 @@
 
 ## デバッガ
 
+### LLDB
+
 XcodeにはiOSやOSX向けのコンパイラとしてCLangとLLVMが搭載されており、LLVMのデバッガであるLLDBをXcode上で使うことができます。
 この節では、このLLDBを用いたデバッグの手法について紹介します。
 
@@ -123,6 +125,19 @@ Xcodeでは以下のように実行できます。
 
 ![](./images/1_1/image8.png)
 
+### View Hierarchy
+
+画面のレイアウトの崩れなどを視覚的に確認できる便利な機能として、View Hierarchyが存在します。
+
+- 「あれ？このViewってどこいった？」
+- 「なんかViewが思った通りに表示されてない」
+
+など、Viewの表示内容が想定外となった時に有用です。
+
+以下の記事に詳しくまとめられているため、そちらを参照してください。
+
+[デバッグのためにView階層を把握する \- Qiita](https://qiita.com/akatsuki174/items/45d4bd7cb150defbf116)
+
 ## Instruments
 
 Instrumentsとは、Xcodeに付属するパフォーマンス解析ツールです。プロセスを追跡したり、アプリケーションの挙動に関するデータを集めることができる、非常に強力なツールです。Instrumentsを使うことで、アプリケーションに関して例えば次の項目を確認することができます。
@@ -224,3 +239,49 @@ Debug Memory Graph は Xcode8から使用可能になったObjectの参照を可
 LeakObject同士がお互いに参照を持ち合っていることが確認できます。
 
 このサンプルは[samples/day4/sample1-1](../../samples/day4/sample1-1)にあります。
+
+## プリプロセッサ
+
+開発ツールとは異なりますが、デバッグ時/リリース時で挙動を分ける手法としてプリプロセッサが存在します。
+
+### デバッグビルドかどうかの判別
+
+Xcode8以降の場合はデフォルトで、コンパイル時のフラグとしてデバッグビルドには`DEBUG`が付与されています。
+
+そのため下記のように記述することで、デバッグ時とリリース時で挙動を変えることが可能です。
+
+```swift
+#if DEBUG
+    // 開発用の接続先
+    let server = "api.development.push.apple.com"
+#else
+    // 本番用の接続先
+    let server = "api.push.apple.com"
+#endif
+```
+
+上記のようにAPIのリクエスト先を変更したり、デバッグ時でのみ詳細なログを出力したりする時に用いられます。
+
+### 独自の定義を使いたい場合
+
+`Build Settings`の`Swift Compiler - Custom Flags`の中の`Active Compilation Conditions` に任意の値を追加します。
+
+（デフォルトでは、`Debug`のConfigutationsのみに`DEBUG`が入っています）
+
+例えば、ステージング環境のConfigurations(`Staging`)に専用の`HOGE`を付与したい場合は、下記のように値を追加することで接続先分岐を行うことができます。
+
+![](./images/1_1/image19.png)
+
+
+```swift
+#if DEBUG
+    // 開発用の接続先
+    let server = "api.development.push.apple.com"
+#elseif HOGE
+    // ステージング環境用の接続先
+    let server = "api.staging.push.apple.com"
+#else
+    // 本番用の接続先
+    let server = "api.push.apple.com"
+#endif
+```
