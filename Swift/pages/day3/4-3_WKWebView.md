@@ -1,6 +1,13 @@
 > 参考 [mixi-inc/iOSTraining 6.3 UIWebView](https://github.com/mixi-inc/iOSTraining/wiki/6.3-UIWebView)
 
 iOSアプリを作っていて、リンクなどを毎回Safariで開くのではなくアプリの中で開きたいということがあると思います。そのような時に使えるコンポーネントとしてWKWebViewがあります。
+
+> その他のWebView  
+WKWebView以外にもUIWebView, SFSafariViewControllerが存在します。  
+しかし、セキュリティのリスクなどから現在はWkWebViewかSFSafariViewControllerの利用が推奨されています。  
+詳しくは下記の記事を参考にしてください。  
+[WKWebViewとSFSafariViewControllerの違いについて \- Qiita](https://qiita.com/zakiyamaaaaa/items/26f4edcdbcd1aeaec6d6)
+
 この章ではそのWKWebViewの使い方と、WKWebViewを使った演習を行います。
 
 # WKWebViewの基本的な使い方
