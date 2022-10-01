@@ -58,7 +58,7 @@ Attributes Inspectorで各属性設定しましょう。
 
 ![viewhierarchy](./images/1_3_2/image4.png)
 
-ViewController の view 上に SampleViewController の view を表示させる。
+ViewControllerのviewに、UIButtonを追加し、モーダル遷移させることで、SampleViewControllerのview を表示させる。
 
 ```swift
 view.addSubview(sampleVC.view)
@@ -94,7 +94,9 @@ override func viewDidLoad() {
 - SampleViewControllerのviewのtopとgrayのviewのtopのスペースが20px
 - SampleViewControllerのviewのleftとgrayのviewのleftのスペースが16px
 - SampleViewControllerのviewのrightとgrayのviewのrightのスペースが16px
-- grayのviewのheightを320pxに固定
+- grayのviewのheightを240pxに固定
+- yellowのviewのWidthを200pxに固定
+- yellowのviewのheightを200pxに固定
 
 ![autolayout1](./images/1_3_2/image6.png)
 
