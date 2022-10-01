@@ -68,7 +68,7 @@ Main.storyboardを選択して、右上の+マーク（オブジェクトライ�
 ![drop down new view controller](./images/1_3_1/image2.png)
 
 今新しく作ったViewControllerのクラスはデフォルトである UIViewControllerになります。このクラスを自分の作ったViewControllerに切り替えます。
-ドラッグ&ドロップしたViewControllerを選択した上で右側のユーティリティエリアの上部右から四番目の Show the Identity inspectorの中にあるClassを**SampleViewController**にします
+ドラッグ&ドロップしたViewControllerを選択した上で右側のユーティリティエリアの上部右から四番目のIdentity inspectorの中にあるClassを**SampleViewController**にします
 
 ![set class](./images/1_3_1/image3.png)
 
@@ -78,7 +78,7 @@ storyboardにはデフォルトで最初にロードされるViewControllerを�
 
 プロジェクトテンプレートから読み込まれた場合は最初に生成されるViewControllerというクラスがInitial View Controllerとして設定されています。その設定をSampleViewControllerに移行します。
 
-storyboardでSampleViewControllerを選択した状態で、右側のユーティリティエリアの右から3番目のShow the Attributes inspectorを開きます。
+storyboardでSampleViewControllerを選択した状態で、右側のユーティリティエリアの右から3番目のAttributes inspectorを開きます。
 その下のViewControllerの設定項目の中に**is Initial View Controller**のチェックがあると思うのでそこにチェックを入れます。
 すると、ViewControllerに向かって付いていた矢印が SampleViewControllerに移ると思います。そうなっていればOKです。
 この矢印はそのStoryboardのInitial View Controllerの印です。
