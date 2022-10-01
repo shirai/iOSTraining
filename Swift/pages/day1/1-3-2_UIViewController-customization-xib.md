@@ -58,7 +58,7 @@ Attributes Inspectorで各属性設定しましょう。
 
 ![viewhierarchy](./images/1_3_2/image4.png)
 
-ViewControllerのviewに、UIButtonを追加し、モーダル遷移させることで、SampleViewControllerのview を表示させる。
+UIViewControllerのviewに、SampleViewControllerのviewを表示させる。
 
 ```swift
 view.addSubview(sampleVC.view)
