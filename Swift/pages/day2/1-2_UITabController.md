@@ -83,7 +83,7 @@ Main.storyboardに移動したら、iPhone画面をクリックして、Xcodeと
 
 ![img](./images/1_2/image2.png)
 
-「正」これで『Tab Bar Controller』画面が表示されました。
+これで『Tab Bar Controller』画面が表示されました。
 ![img](./images/1_2/image3.png)
 
 新しくViewControllerを追加する際は、ViewControllerをstoryboard上に追加し、Tab Bar Controller から controlを押しながらViewControllerへドラッグします
