@@ -92,7 +92,7 @@ SampleViewControllerにもう一つボタンを追加し、ボタンタップ時
 #### segueで表示するViewControllerにデータを与える
 segueを用いて画面遷移を行うとき、表示したいViewControllerに何かデータを渡して遷移することがよくあります。  
 そのようなケースではUIViewControllerのインスタンスメソッド[`prepare(for:sender:)`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621490-prepare)を利用します。  
-UIViewControllerのサブクラスを作った際に自動的にコードスニペットが.mファイルにコメントアウトで記述されています。  
+UIViewControllerのサブクラスを作った際に自動的にコードスニペットが.swiftファイルにコメントアウトで記述されています。  
 このコメントアウトを外して実際に実装します。
 
 この`prepare(for:sender:)`はsegueが呼ばれて実際に実行されるまでの間、その遷移に関して追加で行う処理がある場合に実装するメソッドとなります。  
