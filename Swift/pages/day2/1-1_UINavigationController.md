@@ -1,16 +1,19 @@
 # 概要
-> ![navigationController1](https://docs-assets.developer.apple.com/published/83ef757907/navigation_interface_2x_8f059f7f-2e2f-4c86-8468-7402b7b3cfe0.png)
-
-> [API Reference UINavigationController](https://developer.apple.com/reference/uikit/uinavigationcontroller) から引用
-
 UINavigationController は UIViewController を階層的に管理するコンテナです。  
 複数の UIViewController はスタックで管理されます。  
+
+遷移イメージ
+> ![navigationController1](https://docs-assets.developer.apple.com/published/83ef757907/navigation_interface_2x_8f059f7f-2e2f-4c86-8468-7402b7b3cfe0.png)
+
+> [API Reference UINavigationController](https://developer.apple.com/reference/uikit/uinavigationcontroller) から引用  
+
 またその各 UIViewController にナビゲートするインタフェース（UINavigationBar, UIToolBar）も管理します。
 
 > ![navigationController2](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-container-acting-as-root-view-controller_2-2_2x.png)
 > [View Controller Programming Guide for iOS](https://developer.apple.com/jp/documentation/featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html) から引用
 
 UINavigationController における重要なプロパティとメソッドは以下の通りです。
+https://developer.apple.com/documentation/uikit/uinavigationcontroller
 
 ##### プロパティ
 
@@ -86,7 +89,8 @@ ViewControllerのstoryboard ID はクラス名と同じで、ViewController
 }
 ```
 
-UIViewControllerはプロパティとして [`navigationController`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621860-navigationcontroller) を持っています。このプロパティが自分を管理しているUINavigationControllerになるので、このプロパティに対して `pushViewController(_:animated:)`を実行します。
+UIViewControllerはプロパティとして [`navigationController`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621860-navigationcontroller) を持っています。  
+このプロパティが自分を管理しているUINavigationControllerになるので、このプロパティに対して `pushViewController(_:animated:)`を実行します。
 
 シミュレータを実行するとViewControllerが表示され、ボタンをタップすると次々画面遷移できれば完了です。
 
@@ -95,7 +99,9 @@ UIViewControllerはプロパティとして [`navigationController`](https://dev
 Main.storyboard
 ![xib](./images/1_1/image6.png)
 
-rootView の TopBar を NavigationBar にすると、NavigationBar が現れます。これは実際に NavigationBar を設置しているのでは無く、NavigationBar がある体でレイアウトをするという意味です。この ViewController には NavigationBar が入ってくるので、それを考慮して他のレイアウトを作ることが出来ます。
+rootView の TopBar を NavigationBar にすると、NavigationBar が現れます。  
+これは実際に NavigationBar を設置しているのでは無く、NavigationBar がある体でレイアウトをするという意味です。  
+この ViewController には NavigationBar が入ってくるので、それを考慮して他のレイアウトを作ることが出来ます。
 
 **確認**　: navigationController.viewControllers にスタックされていることを、ログで確認してください。
 
@@ -165,7 +171,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 ![](./images/1_1/image7.png)
 
-変更できるコンポーネントとできないコンポーネントがあるんですが、 `UI_APPEARANCE_SELECTOR` というアノテーションのついたプロパティは変更できます。
+変更できるコンポーネントとできないコンポーネントがありますが、 `UI_APPEARANCE_SELECTOR` というアノテーションのついたプロパティは変更できます。
 
 詳しくは [http://nshipster.com/uiappearance/](http://nshipster.com/uiappearance/) をご覧ください。
 
