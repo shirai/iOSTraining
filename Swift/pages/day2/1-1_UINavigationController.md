@@ -1,17 +1,14 @@
-> 参考 [mixi-inc/iOSTraining 2.1 UINavigationController](https://github.com/mixi-inc/iOSTraining/wiki/2.1-UINavigationController)
-
-[UINavigationController Class Reference](https://developer.apple.com/reference/uikit/uinavigationcontroller) | [View Controller Programming Guide for iOS](https://developer.apple.com/jp/documentation/featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html)
-
 # 概要
-
 > ![navigationController1](https://docs-assets.developer.apple.com/published/83ef757907/navigation_interface_2x_8f059f7f-2e2f-4c86-8468-7402b7b3cfe0.png)
 
 > [API Reference UINavigationController](https://developer.apple.com/reference/uikit/uinavigationcontroller) から引用
 
-UINavigationController は UIViewController を階層的に管理するコンテナです。複数の UIViewController はスタックで管理されます。またその各 UIViewController にナビゲートするインタフェース（UINavigationBar, UIToolBar）も管理します。
+UINavigationController は UIViewController を階層的に管理するコンテナです。  
+複数の UIViewController はスタックで管理されます。  
+またその各 UIViewController にナビゲートするインタフェース（UINavigationBar, UIToolBar）も管理します。
 
-> ![navigationController2](https://developer.apple.com/jp/documentation/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-container-and-presented-view-controller_2-4_2x.png)
-> [View Controller Programming Guide for iOS](https://developer.apple.com/jp/documentation/featuredarticles/ViewControllerPGforiPhoneOS/TheViewControllerHierarchy/TheViewControllerHierarchy.html#//apple_ref/doc/uid/TP40007457-CH33-SW1) から引用
+> ![navigationController2](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-container-acting-as-root-view-controller_2-2_2x.png)
+> [View Controller Programming Guide for iOS](https://developer.apple.com/jp/documentation/featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html) から引用
 
 UINavigationController における重要なプロパティとメソッドは以下の通りです。
 
@@ -37,7 +34,8 @@ UINavigationController における重要なプロパティとメソッドは以
 
 ## navigationController の表示、push
 
-無限に push する画面遷移を実装しましょう。プロジェクトテンプレートで Single View Applicationを作って以下の手順で実装を行います。
+無限に push する画面遷移を実装しましょう。  
+新規プロジェクトを作成して、以下の手順で実装を行います。
 
 1. UINavigationControllerを配置して、Initial View Controllerに指定
 2. 無限に表示されるViewControllerのクラス(ViewController)を作成
@@ -116,11 +114,11 @@ rootView の TopBar を NavigationBar にすると、NavigationBar が現れま�
 
 [UINavigationItem Class Reference](https://developer.apple.com/reference/uikit/uinavigationitem)
 
-UINavigationBar は UINavigationItem を管理するためのコンテナです。UINavigationItem は各 ViewController が持っていて、NavigationBar に表示させる情報を管理しています。
+UINavigationBar は UINavigationItem を管理するためのコンテナです。  
+UINavigationItem は各 ViewController が持っていて、NavigationBar に表示させる情報を管理しています。
 
-> ![UINavigationBar](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/2.1/UINavigationBar.png)
-> [iOS View Controller
-カタログ](https://developer.apple.com/jp/documentation/ViewControllerCatalog.pdf) から引用
+> ![UINavigationBar](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/2.1/UINavigationBar.png)  
+> [iOS View Controllerカタログ](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewControllerCatalog/Chapters/NavigationControllers.html#//apple_ref/doc/uid/TP40011313-CH2-SW1) から引用
 
 NavigationBar 右上方にボタンを設置してみましょう。ボタンタップで pop を実装しましょう。
 
@@ -129,7 +127,7 @@ VIewController.swift
 ```swift
 override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+
     let rightButton = UIBarButtonItem(title: "pop", style: .plain, target: self, action: #selector(ViewController.rightButtonTapped(_:)))
     navigationItem.rightBarButtonItem = rightButton
 }
@@ -180,7 +178,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 ##### 遷移の仕様
 
-* 最初に表示される画面にボタンが三つ並んでいる (ボタンタイトルはそれぞれ "Button A", "Button B", "Button C")
+* 最初に表示される画面にボタンが3つ並んでいる (ボタンタイトルはそれぞれ "Button A", "Button B", "Button C")
 * それぞれのボタンをタップすると次のViewControllerにpushされる
 * 遷移先の画面の中央にどのボタンがタップされて遷移されたかが表示される
 
@@ -194,7 +192,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 * Segueを使わずに、NextViewControllerに遷移するようにしてください。
 * NextViewControllerを1つにまとめてください。
 
-##### 回答
-
-以下のプロジェクトをごらんください。  
-[after/day2/1.1/NavigationSample](../../after/day2/1.1/NavigationSample)
+# 参考 
+- [mixi-inc/iOSTraining 2.1 UINavigationController](https://github.com/mixi-inc/iOSTraining/wiki/2.1-UINavigationController)
+- [UINavigationController Class Reference](https://developer.apple.com/reference/uikit/uinavigationcontroller)
+- [View Controller Programming Guide for iOS](https://developer.apple.com/jp/documentation/featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html)
+- https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/
