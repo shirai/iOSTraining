@@ -157,7 +157,9 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     if let navigationController = window?.rootViewController as? UINavigationController {
         navigationController.navigationBar.setBackgroundImage(UIImage(named: "customNavBarImage1"), for: .default)
     }
+    // ナビゲーションバーの背景色を変更
     UINavigationBar.appearance().backgroundColor = .red
+    // UIBarButtonItemの文字色を変更
     UIBarButtonItem.appearance().tintColor = .black
     // 省略
 }
