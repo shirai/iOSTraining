@@ -1,5 +1,3 @@
-> 参考 [mixi-inc/iOSTraining 4.3 セルのカスタマイズ](https://github.com/mixi-inc/iOSTraining/wiki/4.3-%E3%82%BB%E3%83%AB%E3%81%AE%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA)
-
 UITableViewCellには、デフォルトでいくつかのオプションがあります。
 
 例):
@@ -29,13 +27,19 @@ UITableViewCellには、デフォルトでいくつかのオプションがあ�
 
 今回は以下の画像を使うので、サンプルプロジェクトに追加してください
 
+- マイマイ  
+![](./images/3_3/icon1.png)  
 
-![](./images/3_3/icon1.png)
-![](./images/3_3/icon2.png)
-![吹き出し左](./images/3_3/balloon1.png)
-![吹き出し右](./images/3_3/balloon2.png)
+- 大輔  
+![](./images/3_3/icon2.png)  
 
-###カスタムセルのxibの追加
+- 吹き出し左  
+![吹き出し左](./images/3_3/balloon1.png)  
+
+- 吹き出し右  
+![吹き出し右](./images/3_3/balloon2.png)  
+
+### カスタムセルのxibの追加
 
 - XcodeのNewFileから Cocoa Touch Class を選択し、UITableViewCellのサブクラスとしてクラスを作成します。
 クラス名は、CustomCellとしました。
@@ -161,7 +165,7 @@ let identifier = indexPath.row % 2 == 0 ? "cell" : "cell2"
 let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! CustomCell
 cell.bodyLabel.text = "\(indexPath.row)"
 ```
-(行が偶数の時はマイマイを、奇数の時はダイスケを表示するようにしています)
+(行が偶数の時はマイマイを、奇数の時は大輔を表示するようにしています)
 呼び出す時に、viewDidLoadで登録したidentiferを利用してdequeueすると、登録したxibのセルが返ってきます。
 
 実行すると次のようになります。
