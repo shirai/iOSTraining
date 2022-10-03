@@ -1,18 +1,8 @@
-> [mixi-inc/iOSTraining 4.1 uitableviewについて](https://github.com/mixi-inc/iOSTraining/wiki/4.1-UITableView%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
-
-**公式ドキュメントはこちらをご覧ください**
-
-[https://developer.apple.com/jp/devcenter/ios/library/documentation/TableView_iPhone.pdf](https://developer.apple.com/jp/devcenter/ios/library/documentation/TableView_iPhone.pdf)
-
-
 # UITableViewとは
 
 TableViewとはiOSのアプリケーションで良く用いられる、垂直方向にスクロールしながら情報を表示することの出来るUIViewのサブクラスの一つです。
 
 > ![https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/4.1/tableview_example.png](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/4.1/tableview_example.png)
->
-> [iOS Table Viewプログラ
-ミングガイド](https://developer.apple.com/jp/devcenter/ios/library/documentation/TableView_iPhone.pdf)より引用
 
 ### 特徴
 
@@ -71,7 +61,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 ```swift
 override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
 
     tableView.delegate = self
     tableView.dataSource = self
@@ -126,9 +115,11 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 ```
 
 **`dequeueReusableCell(withIdentifier:)`について**  
-UITableViewでは、同じタイプのセルを使い回すことがよくあるため、内部でそのセルをキャッシュしておく仕組みがあります。一度表示したけど非表示になったセルなどがこのキャッシュに回されて`dequeueReusableCell(withIdentifier:)`を使うことでキャッシュされたセルを再利用して表示します。
-利用するセルはtableViewに予め登録しておく必要があります。登録には
-`register(_:forCellReuseIdentifier:)` のメソッドを利用します。registerClassには利用するセルのクラスを、CellReuseIdentifierにはキャッシュから引いてくるときに利用する識別子を指定します。
+UITableViewでは、同じタイプのセルを使い回すことがよくあるため、内部でそのセルをキャッシュしておく仕組みがあります。  
+一度表示したけど非表示になったセルなどがこのキャッシュに回されて`dequeueReusableCell(withIdentifier:)`を使うことでキャッシュされたセルを再利用して表示します。  
+利用するセルはtableViewに予め登録しておく必要があります。  
+登録には`register(_:forCellReuseIdentifier:)` のメソッドを利用します。  
+registerClassには利用するセルのクラスを、CellReuseIdentifierにはキャッシュから引いてくるときに利用する識別子を指定します。  
 登録は、viewDidLoadなどの初期化のときにしておくと良いでしょう。
 
 ```swift
@@ -162,4 +153,4 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 
 ###### 2. TableViewのスタイルを変える
 UITableViewには`Plain`, `Grouped`の二種類のスタイルが用意されています。デフォルトではPlainが設定されていますが、storyboard上から変更することも可能です。
-Attribute Inspector から Table View のスタイルを変更してみたください。
+Attribute Inspector から Table View のスタイルを変更してみてください。
