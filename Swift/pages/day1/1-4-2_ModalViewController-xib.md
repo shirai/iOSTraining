@@ -1,10 +1,7 @@
-> 参考 [mixi-inc/iOSTraining 1.4 UIViewController2 ModalViewController](https://github.com/mixi-inc/iOSTraining/wiki/1.4-UIViewController2---ModalViewController)
-
-参考 : [UIViewController Class Reference](http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html) | [View Controller Programming Guide for iOS](http://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/ViewControllerPGforiOS.pdf)
-
 # 概要
 
-ModalViewController は一時的にユーザの操作の中に割り込んで表示させるもの。公式ドキュメントには以下のようなケースで使うことを想定している。
+ModalViewController は一時的にユーザの操作の中に割り込んで表示させるもの。  
+公式ドキュメントには以下のようなケースで使うことを想定している。
 
 - ユーザから直ちに情報を収集するため
 - 何らかのコンテンツを一時的に表示するため
@@ -12,7 +9,8 @@ ModalViewController は一時的にユーザの操作の中に割り込んで表
 - デバイスの向きに応じて代替のインターフェイスを実装するため
 - 特殊なアニメーショントランジションを使用する(またはトランジションなしの)新しいビュー 階層を表示するため
 
-UIViewController は一つの ModalView を表示することが可能。そのときに、Modal を表示する ViewController と ModalViewController には親子関係が出来る。
+UIViewController は一つの ModalView を表示することが可能。  
+そのときに、Modal を表示する ViewController と ModalViewController には親子関係が出来る。
 
 > ![modal1](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_SlideTransition_fig_8-1_2x.png)
 >
@@ -32,8 +30,8 @@ present(postViewController, animated: true, completion: nil)
 
 ## 表示オプション
 
-- modalTransitionStyle 画面遷移の方法
-
+- [画面遷移の方法](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle)
+  - modalTransitionStyle
 ```swift
 public enum UIModalTransitionStyle : Int {
     case coverVertical
@@ -43,7 +41,8 @@ public enum UIModalTransitionStyle : Int {
 }
 ```
 
-- modalPresentationStyle - iPad の場合に表示形式を変更できる
+- [表示形式の変更方法](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621355-modalpresentationstyle)
+  - modalPresentationStyle
 
 ```swift
 public enum UIModalPresentationStyle : Int {
@@ -59,28 +58,30 @@ public enum UIModalPresentationStyle : Int {
 }
 ```
 
-# 消し方と delegate
+# Modalの閉じ方と delegate
 
 ## dismissViewController
 
 ```swift
 dismiss(animated: true, completion: nil)
 ```
-このメソッドを呼べば、トップレベルの ModalViewController が dismiss されます。公式ドキュメントには原則として呼び出した ViewControlelr が消すべきと書いてあります。状況に応じて使い分けてください。
+このメソッドを呼べば、トップレベルの ModalViewController が dismiss されます。  
+公式ドキュメントには原則として呼び出した ViewControlelr が消すべきと書いてあります。状況に応じて使い分けてください。
 
 ![dismissViewController](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/1.5/dismissViewController.png)
 
 ## delegate と protocol
 
-ChildViewController で閉じるボタンを押したことを ViewControlelr が知る必要があります。このようにある VC から VC へ何らかの通知を送る手段の一つとして delegate があります。
+ChildViewController で閉じるボタンを押したことを ViewControlelr が知る必要があります。このようにある ViewControlelr から ViewControlelr へ何らかの通知を送る手段の一つとして delegate があります。
 
 ![delegate](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/1.5/delegate.png)
 
-delegate とはあるクラスで処理できない処理を他のクラスに代わりに処理させるパターンです。この場合、ChildViewController でボタンが押されたイベントだけキャッチし、ChildViewController を閉じる処理は ViewController に任せることにします。
+delegate とはあるクラスで処理できない処理を他のクラスに代わりに処理させるパターンです。  
+この場合、ChildViewController でボタンが押されたイベントだけキャッチし、ChildViewController を閉じる処理は ViewController に任せることにします。
 
 ChildViewController.swift
 ```swift
-protocol ChildViewControllerDelegate: class { // [1] プロトコルの宣言
+protocol ChildViewControllerDelegate: AnyObject { // [1] プロトコルの宣言
     func childViewController(_ viewController: PostViewController, didTapCloseButton button: UIButton)
 }
 
@@ -133,7 +134,7 @@ class ViewController : UIViewController, ChildViewControllerDelegate {} // [4] p
 }
 ```
 
-### [4] protocol の採用
+### [4] protocol に準拠
 
 複数ある場合は "," でつなげます。
 
@@ -155,3 +156,8 @@ protocol の採用をすることで method の補完が効くようになりま
 # 注意事項
 
 Modal の 表示、非表示アニメーションが同時に起きるとアニメーションの衝突でクラッシュするので気をつけてください。
+
+# 参考
+-  [mixi-inc/iOSTraining 1.4 UIViewController2 ModalViewController](https://github.com/mixi-inc/iOSTraining/wiki/1.4-UIViewController2---ModalViewController)
+- [UIViewController Class Reference](http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html) 
+- [View Controller Programming Guide for iOS](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/PresentingaViewController.html)
