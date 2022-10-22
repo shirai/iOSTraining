@@ -10,7 +10,7 @@ Carthageのリポジトリは下記になります。詳細はこちらをご覧
 #### インストール
 
 - Homebrewを用いてインストールします。
-  - 参考 [【El Capitan】Mac OSX 10.11にHomebrewインストール](http://qiita.com/aoioooii/items/c14922eede6a83a750da)
+  - 参考 [Homebrewインストール方法](https://aiacademy.jp/media/?p=2817)
 
 コマンドラインツールで以下を実行します
 
@@ -82,7 +82,7 @@ git “file:///directory/to/project” “branch”
 
 と書くことが出来ます。
 
-#### インストール
+#### インストール方法
 
 ライブラリのインストールには
 
@@ -139,9 +139,19 @@ import Alamofire
 
 #### その他
 
+##### CocoaPodsとの比較
 CocoaPodsとの違いは、`carthage update`時にxcodebuildを使ってframeworkがbuildされています。
 それによって、projectのビルドにライブラリのビルドが含まれないので、ビルドが速くなります。
 
 不便な点としては、CocoaPodsのSpecsのように登録されているライブラリが中央集中型で管理されていますが、Carthageにはそういったものがないので自分でライブラリを探す必要があります。
 
 このサンプルは[samples/day4/sample1-3](../../samples/day4/sample1-3)にあります。
+
+##### SwiftPackageManagerとの比較
+SwiftPackageManagerとは
+CocoaPodsやCarthageと同じようにライブラリの依存関係を管理してくれるツールです。  
+[利用方法はこちら](https://qiita.com/hironytic/items/09a4c16857b409c17d2c#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E6%93%8D%E4%BD%9C)  
+
+SwiftPackageManagerはCocoaPodsと比較して、最近登場したため対応しているライブラリが少ないことが今のところデメリットです。
+
+[参考: CocoaPods,SwiftPackageManager,Carthageの比較](https://qiita.com/pecoms/items/50d7a6bc09d51da690df)
