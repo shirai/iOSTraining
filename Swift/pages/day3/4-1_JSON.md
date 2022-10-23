@@ -1,10 +1,9 @@
-> 参考 [mixi-inc/iOSTraining 6.2 JSONのシリアライズとデシリアライズ](https://github.com/mixi-inc/iOSTraining/wiki/6.2-JSON%E3%81%AE%E3%82%B7%E3%83%AA%E3%82%A2%E3%83%A9%E3%82%A4%E3%82%BA%E3%81%A8%E3%83%87%E3%82%B7%E3%83%AA%E3%82%A2%E3%83%A9%E3%82%A4%E3%82%BA)
+WebAPIやJSONRPCを利用する際、よくフォーマットとして利用されるのがJSONです。  
+Foundation FrameworkにもJSONのシリアライズやデシリアライズを行うクラスが含まれています。  
+この章ではそのクラスの利用法を説明します。
 
-WebAPIやJSONRPCを利用する際、よくフォーマットとして利用されるのがJSONです。Foundation FrameworkにもJSONのシリアライズやデシリアライズを行うクラスが含まれています。この章ではそのクラスの利用法を説明します。
-
-クラスリファレンスはこちら [https://developer.apple.com/reference/foundation/jsonserialization](https://developer.apple.com/reference/foundation/jsonserialization)
-
-# JSONSerialization
+クラスリファレンスは[こちら](https://developer.apple.com/reference/foundation/jsonserialization)
+# JSONSerializationを利用した方法
 
 JSONのシリアライズ、デシリアライズを行うクラスはJSONSerializationです。このクラスを用いてData <--> JSONオブジェクトを変換するには以下の制約があります。
 
@@ -127,5 +126,97 @@ do {
       "lastName" : "Jones"
     }
   ]
+}
+```
+
+# Codableを利用した方法
+## Codableとは
+
+API通信等で取得したJSONやプロパティリストを任意のデータ型に変換するプロトコル
+利用することで簡単に、JSONのシリアライズ、デシリアライズを行うことができます。
+
+[Appleのドキュメント](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types)
+
+## Data → JSONオブジェクト
+**実行例**  
+以下のオブジェクトをJsonに変換します
+
+```swift
+let employee = Employee(name: "山田", age: 45)
+
+struct Employee: Codable {
+  let name: String
+  let age: Int
+}
+
+```
+
+**変換コード**
+
+```swift
+let encoder = JSONEncoder()
+do {
+    let data = try encoder.encode(employee)
+    let jsonString: String = String(data: data, encoding: .utf8)!
+    print(jsonString)
+} catch {
+    // error内容を出力
+    print(error.localizedDescription)
+}
+
+```
+
+
+## Json → Dataオブジェクト
+従業員情報のJSONを[Employee型]に変換します
+
+**実行例**  
+以下の文字列についてパースを行います。
+
+```swift
+// 従業員情報
+var jsonString = """
+{
+  "name": "Bob",
+  "age": 20,
+}
+""".data(using: .utf8)!
+```
+
+**変換コード**
+
+```swift
+struct Employee: Codable {
+  let name: String
+  let age: Int
+}
+
+// Json形式の文字列jsonStringをJSONDecoderを利用して、Employee型に変換している
+let employee: Employee = try JSONDecoder().decode(Employee.self, from: jsonString)
+
+// 結果を出力
+print(employee)
+
+```
+
+
+## CodingKeys
+EncodeとDecodeでキー名が異なる時に一対一対応させる必要がある。  
+その時に使うのが「CodingKeys」です。
+
+**定義例**  
+```
+struct User: Codable {
+  name: String
+  age: Int
+  additionalInfo: String
+
+  enum CodingKeys: String, CodingKey {
+    case name
+    case age
+    // additionalInfoのkey名が一致しない時(additional_info)に
+    // CodingKeysを定義しないとEncode, Decodeが出来ない
+    case additionalInfo = "additional_info"  
+  }
 }
 ```
