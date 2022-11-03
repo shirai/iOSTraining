@@ -1,13 +1,12 @@
-> 参考 [mixi-inc/iOSTraining 1.4 UIViewController2 ModalViewController (storyboard)](https://github.com/mixi-inc/iOSTraining/wiki/1.4-UIViewController2-ModalViewController-(storyboard))
 
-参考 : [UIViewController Class Reference](http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html) | [View Controller Programming Guide for iOS](http://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/ViewControllerPGforiOS.pdf)
 
 # 概要
 
-UIViewControllerには他のViewControllerと連携して新しいViewControllerを表示するなどの役割もあります。
-連携のやり方には代表的なものに Modal, Navigation Controller, TabBarController などの方法があり、この章ではModalを用いた方法を解説します。
+UIViewControllerには他のViewControllerと連携して新しいViewControllerを表示するなどの役割もあります。  
+連携のやり方には代表的なものに Modal, Navigation Controller, TabBarController などの方法があり、この章ではModalを用いた方法を解説します。  
 
-Modal View Controllerは「現在のViewControllerで行っている操作を一時中断して新しいViewControllerを表示する」というケースで利用されます。公式ドキュメントには以下のようなケースで使うことを想定しています。
+Modal View Controllerは「現在のViewControllerで行っている操作を一時中断して新しいViewControllerを表示する」というケースで利用されます。  
+公式ドキュメントには以下のようなケースで使うことを想定しています。
 
 - ユーザから直ちに情報を収集するため
 - 何らかのコンテンツを一時的に表示するため
@@ -29,50 +28,52 @@ UIViewController は一つの ModalView を表示することが可能で、そ�
 
 # 表示方法
 
-表示方法は storyboard から直接表示する方法と、コード上からViewControllerを生成して表示する方法があります。
+表示方法はstoryboard から直接表示する方法と、コード上からViewControllerを生成して表示する方法があります。
 
 ### storybaordから直接表示する方法
+1.3のサンプルプロジェクトをさらに改造します。  
+[samples/day1/sample1-3-1/VCCustomization](../../samples/day1/sample1-3-1)
 
-1.3のサンプルプロジェクトをさらに改造します。[samples/day1/sample1-3-1/VCCustomization](../../samples/day1/sample1-3-1)
-
-追加で新しい View Controller のサブクラスを作ってください。クラス名は "SecondViewController" としました。
-できたら1.3と同様にstoryboardにViewControllerを追加して、クラスを"SecondViewController"にしてください。
+追加で新しい View Controller のサブクラスを作ってください。  
+クラス名は "SecondViewController" としました。  
+できたら1.3と同様にstoryboardにViewControllerを追加して、クラスを"SecondViewController"にしてください。  
 わかりやすくするために、SecondViewController上に何かラベルを配置しておくと良いかもしれません。
 
 #### segueを追加して表示する
 
-segue(セグエ)とは二つのシーン間の遷移方法についての設定のことです。どのViewControllerからどのViewControllerを、どのように表示するか、などを設定します。
+segue(セグエ)とは二つのシーン間の遷移方法についての設定のことです。  
+どのViewControllerからどのViewControllerを、どのように表示するか、などを設定します。  
 主に、storyboard上で遷移を決めるときに利用します。
 
 storyboard上にViewControllerを追加できたら、SampleViewController上のボタンをタップした時に、SecondViewControllerを表示できるようにsegueを追加しましょう。
 
-storyboardのSampleViewControllerの上のUIButtonをcontrolボタンを押しながらドラッグします。
-するとマウスポインタ上とボタンの間に青い線が出ると思います。そのままSecondViewController上までドラッグします。(図3)
+storyboardのSampleViewControllerの上のUIButtonをcontrolボタンを押しながらドラッグします。  
+するとマウスポインタ上とボタンの間に青い線が出ると思います。  
+そのままSecondViewController上までドラッグします。(図3)
 
 ![図3](./images/1_4_1/image1.png)
 図3
 
 SecondViewControllerまできたらドロップしてください。すると、図4のようなパネルが出ると思うので、その中から "present modally" を選択します。
 
-![図4](./images/1_4_1/image2.png)
+![図4](./images/1_4_1/image2.png)  
 図4
 
-ここまでできれば、segueの追加は完了です。
+ここまでできれば、segueの追加は完了です。  
 実はここまでできれば、SecondViewControllerは表示することができます。シミュレータから実行して、SampleViewControllerのボタンをタップするとSecondViewControllerが表示されると思います。
 
 #### プログラム上からsegueを実行する
-
-今のサンプルではボタンをタップした時に自動的にsegueが実行され、SecondViewController が表示されました。
-実際にアプリを作る際はデータのロード完了時まで遷移したくない、などのケースもあるため任意のタイミングで実行する必要があります。
+今のサンプルではボタンをタップした時に自動的にsegueが実行され、SecondViewController が表示されました。  
+実際にアプリを作る際はデータのロード完了時まで遷移したくない、などのケースもあるため任意のタイミングで実行する必要があります。  
 そのようなケースではプログラム上からsegueを実行します。
 
-SampleViewControllerにもう一つボタンを追加し、ボタンタップ時に呼ばれるメソッドを一つ追加してください。
+SampleViewControllerにもう一つボタンを追加し、ボタンタップ時に呼ばれるメソッドを一つ追加してください。  
 今回は `secondButtonTapped:` というメソッドにしています。
 
 ![ボタンとハンドラ追加](./images/1_4_1/image3.png)
 
-次にstoryboard上でsegueを選択し、Xcodeの右側にあるユーティリティのAttribute Inspectorから Stroryboard Segue Identifierを入力します。
-このIdentifierはstoryboard上で実行されるsegueの識別子でプログラムから呼び出す時などに使います。名前については他とIdentifierと重複しない限り自由につけることができます。
+次にstoryboard上でsegueを選択し、Xcodeの右側にあるユーティリティのAttribute Inspectorから Stroryboard Segue Identifierを入力します。  
+このIdentifierはstoryboard上で実行されるsegueの識別子でプログラムから呼び出す時などに使います。名前については他とIdentifierと重複しない限り自由につけることができます。  
 今回は "presentSecondViewController" としました。
 
 ![img](./images/1_4_1/image4.png)
@@ -89,16 +90,16 @@ SampleViewControllerにもう一つボタンを追加し、ボタンタップ時
 新たに追加したボタンをタップしたときにSecondViewControllerが出ればOKです。
 
 #### segueで表示するViewControllerにデータを与える
-
-segueを用いて画面遷移を行うとき、表示したいViewControllerに何かデータを渡して遷移することがよくあります。
-そのようなケースではUIViewControllerのインスタンスメソッド[`prepare(for:sender:)`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621490-prepare)を利用します。
-UIViewControllerのサブクラスを作った際に自動的にコードスニペットが.mファイルにコメントアウトで記述されています。
+segueを用いて画面遷移を行うとき、表示したいViewControllerに何かデータを渡して遷移することがよくあります。  
+そのようなケースではUIViewControllerのインスタンスメソッド[`prepare(for:sender:)`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621490-prepare)を利用します。  
+UIViewControllerのサブクラスを作った際に自動的にコードスニペットが.swiftファイルにコメントアウトで記述されています。  
 このコメントアウトを外して実際に実装します。
 
-この`prepare(for:sender:)`はsegueが呼ばれて実際に実行されるまでの間、その遷移に関して追加で行う処理がある場合に実装するメソッドとなります。
+この`prepare(for:sender:)`はsegueが呼ばれて実際に実行されるまでの間、その遷移に関して追加で行う処理がある場合に実装するメソッドとなります。  
 引数は実行されるsegueとsenderです。
 
-画面遷移は一つの画面に対して複数あることがあります。そのためどの画面遷移かを見分けて処理を行う必要があります。
+画面遷移は一つの画面に対して複数あることがあります。  
+そのためどの画面遷移かを見分けて処理を行う必要があります。  
 その際は `segue.identifier` を用いて切り分けます。
 
 また、遷移先のViewControllerが必要な場合は `segue.destinationViewController` で必要なViewControllerを取得することができます。
@@ -121,26 +122,28 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
 ### segueを使わずにViewControllerを表示する
 
-segueを一切使わず、ViewControllerを表示することもできます。iOS4以前はstoryboardがなくそれに伴ってsegueを利用することもできませんでした。
+segueを一切使わず、ViewControllerを表示することもできます。  
+iOS4以前はstoryboardがなくそれに伴ってsegueを利用することもできませんでした。  
 その際の資料については [1.4.2 ModalViewController（xib）](./1-4-2_ModalViewController-xib.md)
 を見ていただくとよいと思います。
-
-storyboardを使いつつ、ただsegueを利用しない、という方法について簡単に紹介します。
+storyboardを使いつつ、ただsegueを利用しない、という方法について簡単に紹介します。  
 先ほど実装したメソッド `secondButtonTapped(_:)` を修正して利用します。
 
-まずはstoryboard内にあるUIViewControllerにIdentifierをつけます。
-ユーティリティのIdentity InspectorからStoryboard ID をつけます。このIDをつけることで、コード上から
-このViewControllerを一つだけ生成することが可能になります。ここにつけるIDは他のものと被らなければ問題ありません。
+まずはstoryboard内にあるUIViewControllerにIdentifierをつけます。  
+ユーティリティのIdentity InspectorからStoryboard ID をつけます。  
+このIDをつけることで、コード上からこのViewControllerを一つだけ生成することが可能になります。  
+ここにつけるIDは他のものと被らなければ問題ありません。  
 ここではクラス名と同じで"SecondViewController"としました。
 
 ![img](./images/1_4_1/image5.png)
 
 では実際に生成して表示します。
 
-生成するには UIStroyboardのインスタンスメソッド [`instantiateInitialViewController()`](https://developer.apple.com/reference/uikit/uistoryboard/1616213-instantiateinitialviewcontroller)を用います。
-このメソッドの引数に先ほど定義したstoryboardIDを渡します。UIViewControllerがstoryboardから生成された場合、プロパティにstoryboardがあるのでそれを利用します。
+生成するには UIStroyboardのインスタンスメソッド [`instantiateInitialViewController()`](https://developer.apple.com/reference/uikit/uistoryboard/1616213-instantiateinitialviewcontroller)を用います。  
+このメソッドの引数に先ほど定義したstoryboardIDを渡します。  
+UIViewControllerがstoryboardから生成された場合、プロパティにstoryboardがあるのでそれを利用します。  
 
-ViewControllerからViewControllerを表示するにはメソッド [`present(_:animated:completion:)`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621380-present) を用います。
+ViewControllerからViewControllerを表示するにはメソッド [`present(_:animated:completion:)`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621380-present) を用います。  
 このメソッドの一つ目の引数に表示したいViewControllerを渡します
 。
 
@@ -156,42 +159,38 @@ ViewControllerからViewControllerを表示するにはメソッド [`present(_:
 
 このような実装になります。同じく表示されればOKです。
 
-
-
 ## ModalViewControllerを閉じる
 
-ModalViewControllerを表示できたら、次はModalViewControllerを閉じる方法について解説します。
+ModalViewControllerを表示できたら、次はModalViewControllerを閉じる方法について解説します。  
 閉じ方はdelegateパターンを用いる方法とUnwind Segue を使う方法の２パターンがあります。
 
 ### delegateパターンを用いて閉じる
-まずは表示しているSecondViewController上にボタンとボタンタップ時に呼ばれるメソッドを定義してください。
-サンプルコードではメソッド名を `buttonTapped(_:)` としました。
-ボタンがタップされた時 `buttonTapped(_:)` が呼ばれます。このメソッドが呼ばれた時に画面を閉じるコードを書いていきます。
+まずは表示しているSecondViewController上にボタンとボタンタップ時に呼ばれるメソッドを定義してください。  
+サンプルコードではメソッド名を `buttonTapped(_:)` としました。 
+ボタンがタップされた時 `buttonTapped(_:)` が呼ばれます。  
+このメソッドが呼ばれた時に画面を閉じるコードを書いていきます。
 
 ##### モーダルを閉じるメソッド
-
 表示したModalViewControllerを閉じるにはUIViewControllerのインスタンスメソッド [`dismiss(animated:completion:)`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621505-dismiss) を用います。
 
-SampleViewControllerか、SecondViewControllerの内部でこのメソッドを呼ぶことでモーダルを閉じることができます。
+SampleViewControllerか、SecondViewControllerの内部でこのメソッドを呼ぶことでモーダルを閉じることができます。  
 どちらのViewControllerからも閉じることができるのですが、SampleViewControllerに閉じる責務があります。
 
-モーダルでViewControllerを表示する時、表示するViewControllerと表示されるViewControllerの関係が存在します。
-今回のケースでは SampleViewControllerが表示する側、SecondViewControllerが表示される側となります。
-またプロパティとして、表示している側は presentingViewController、表示されている側は presentedViewControllerとなります。
-
-そして、**表示している** 側のViewControllerに表示したViewControllerを閉じる責務が発生します。
+モーダルでViewControllerを表示する時、表示するViewControllerと表示されるViewControllerの関係が存在します。  
+今回のケースでは SampleViewControllerが表示する側、SecondViewControllerが表示される側となります。  
+またプロパティとして、表示している側presentingViewController、表示されている側は presentedViewControllerとなります。  
+そして、**表示している** 側のViewControllerに表示したViewControllerを閉じる責務が発生します。  
 あるクラスのインスタンスを生成したら、生成したクラスが責任を持って処理を行う、という原則に則っています。
-
-ただ、実際にモーダルを表示して何か操作を行った時、使った側がその操作の完了を検知できないと処理に不都合がある場合があります。
+ただ、実際にモーダルを表示して何か操作を行った時、使った側がその操作の完了を検知できないと処理に不都合がある場合があります。  
 そのために表示した側が閉じる処理を行う、というルールになっています。
 
 ![img](./images/1_4_1/image6.png)
 
 ##### delegateを使わないとすると
 
-さて、このように表示されたSecondViewControllerを閉じるのは表示したSampleViewControllerになります。
-SecondViewControllerのボタンがタップされた時に、どうすれば SampleViewController が閉じるアクションを行えるのでしょうか。
-SecondViewControllerからSampleViewControllerにボタンがタップされた、あるいは作業が完了したことを通知する必要があります。
+さて、このように表示されたSecondViewControllerを閉じるのは表示したSampleViewControllerになります。  
+SecondViewControllerのボタンがタップされた時に、どうすれば SampleViewController が閉じるアクションを行えるのでしょうか。  
+SecondViewControllerからSampleViewControllerにボタンがタップされた、あるいは作業が完了したことを通知する必要があります。  
 
 一番簡単な方法は、SecondViewControllerがプロパティとしてSampleViewControllerのインスタンスへの参照を持っておき、
 ボタンがタップされた時にそのインスタンスメソッドを呼ぶ方法です。
@@ -233,20 +232,18 @@ present(secondViewController, animated: true, completion: nil)}
 * SecondViewControllerがSampleViewController に依存している
 
 という問題点があります。
-
 ##### Swfitにおけるdelegateパターン
+そこでこのようなケースでは、delegateパターンを用いて解決します。  
+Delegateパターンを端的に言うと、メソッドのインタフェースだけ宣言しておき、あるクラスはそのメソッドを実装します。  
+このメソッドを利用する側は、そのクラスについて知る必要はなく、インタフェースに従うのみとすることでクラス間の依存を取り除くデザインパターンです。
 
-そこでこのようなケースでは、delegateパターンを用いて解決します。
-Delegateパターンを端的に言うと、メソッドのインタフェースだけ宣言しておき、あるクラスはそのメソッドを実装します。このメソッドを利用する側は、そのクラスについて知る必要はなく、インタフェースに従うのみとすることでクラス間の依存を取り除くデザインパターンです。
-
-
-今回のモーダルを閉じるケースをサンプルにDelegateパターンを実装します。
-Delegateパターンを用いる際、Swiftでは **プロトコル** という仕組みを利用します。
+今回のモーダルを閉じるケースをサンプルにDelegateパターンを実装します。  
+Delegateパターンを用いる際、Swiftでは **プロトコル** という仕組みを利用します。  
 このプロトコルのメソッドを実装することを **プロトコルに準拠する** と呼ぶことが多いのですが、メソッドを実装してプロトコルを準拠します。
 
 ```swift
 // SecondViewController.swift 内
-protocol SecondViewControllerDelegate: class {
+protocol SecondViewControllerDelegate: AnyObject {
     func secondViewController(_ viewController: SecondViewController, didTapButton button: UIButton)
 }
 ```
@@ -294,7 +291,6 @@ class SecondViewController: UIViewController {
 * プロパティのタイプが `weak` になっている点。これは循環参照を避けるためにあります。
 * `SecondViewControllerDelegate` という型。これはSecondViewControllerDelegateに準拠していたらどんなクラスでもOKということです。
 
-
 次にSecondViewControllerのボタンタップハンドラを次のように修正します。
 
 ```swift
@@ -303,10 +299,10 @@ class SecondViewController: UIViewController {
 }
 ```
 
-SecondViewControllerのdelegateプロパティのメソッドである `secondViewController(_:didTapButton:)` を呼び出しています。
-delegateプロパティはどんなクラスかは分かりませんが、SecondViewControllerDelegateに準拠しているのでこのメソッドがあるはずなので呼び出すことができます。
-
-次はSampleViewControllerを修正します。SecondViewControllerを表示するときのメソッド `secondButtonTapped(_:)` と `secondViewController(_:didTapButton:)` を合わせて以下のようにします。
+SecondViewControllerのdelegateプロパティのメソッドである `secondViewController(_:didTapButton:)` を呼び出しています。  
+delegateプロパティはどんなクラスかは分かりませんが、SecondViewControllerDelegateに準拠しているのでこのメソッドがあるはずなので呼び出すことができます。  
+次はSampleViewControllerを修正します。  
+SecondViewControllerを表示するときのメソッド `secondButtonTapped(_:)` と `secondViewController(_:didTapButton:)` を合わせて以下のようにします。
 
 ```swift
 @IBAction func secondButtonTapped(_ sender: UIButton) {
@@ -334,24 +330,26 @@ func secondViewController(_ viewController: SecondViewController, didTapButton b
 以上を実装してみて、正しくモーダルが閉じればOKです！
 
 ### Unwind Segue
+Unwind Segueとはstoryboardで遷移を行った元のView Controllerまで戻るSegueになります。  
+例えばモーダルを表示した、Navigation Controllerでpushしたなどの遷移を元に戻すことができます。  
+設定はstoryboardベースになります。  
+Unwind Segueのリファレンスについてはこちらをご覧ください。   [Technical Note TN2298: Using Unwind Segues](https://developer.apple.com/library/ios/technotes/tn2298/_index.html)
 
-Unwind Segueとはstoryboardで遷移を行った元のView Controllerまで戻るSegueになります。例えばモーダルを表示した、Navigation Controllerでpushしたなどの遷移を元に戻すことができます。設定はstoryboardベースになります。
-Unwind Segueのリファレンスについてはこちらをご覧ください。 [Technical Note TN2298: Using Unwind Segues](https://developer.apple.com/library/ios/technotes/tn2298/_index.html)
-
-先ほどのケースではdelegateを用いてModalを閉じましたが、ここではUnwind Segueを用いてモーダルを閉じるサンプルになります。
+先ほどのケースではdelegateを用いてModalを閉じましたが、ここではUnwind Segueを用いてモーダルを閉じるサンプルになります。  
 SecondViewController上に新しくボタンを追加し、そのボタンをタップしたら表示したモーダルが閉じる、というサンプルになります。
 
 ##### Unwind Segue実行時のメソッドを定義
-
-まずはUnwind Segueが実行されたときのメソッドを定義します。メソッドの定義を行うのは、遷移が戻った後に表示されるViewController上になります。
-今回のケースでは モーダルが閉じた後に表示されるViewControllerは SampleViewController になるので、SampleViewControllerにメソッドの定義を行います。モーダルとして表示されている SecondViewController 上ではないので注意してください。
+まずはUnwind Segueが実行されたときのメソッドを定義します。  
+メソッドの定義を行うのは、遷移が戻った後に表示されViewController上になります。  
+今回のケースでは モーダルが閉じた後に表示されるViewControllerは SampleViewController になるので、SampleViewControllerにメソッドの定義を行います。  
+モーダルとして表示されているSecondViewController 上ではないので注意してください。
 
 定義するメソッドには以下の制約を満たさなければなりません。
 
 * 戻り値の型は `IBAction` 型
 * 引数は一つだけで、その型は `UIStoryboardSegue` への参照 (i.e. `UIStoryboardSegue  *`型)
-
-これはstoryboardとこのメソッドを紐づけるための制約になります。メソッド名には特に制約はありません。
+これはstoryboardとこのメソッドを紐づけるための制約になります。  
+メソッド名には特に制約はありません。  
 例えば以下のようにメソッドを定義してください。
 
 ```swift
@@ -361,15 +359,18 @@ SecondViewController上に新しくボタンを追加し、そのボタンをタ
 ```
 
 #### ボタンを追加し、Segueを紐づける
+次はstoryboard上での操作になります。  
+まずSegueをトリガーするためのボタンを配置します。  SecondViewControllerが表示されている時に行うアクションなのでSecondViewController上にボタンを一つ配置してください。  
 
-次はstoryboard上での操作になります。まずSegueをトリガーするためのボタンを配置します。SecondViewControllerが表示されている時に行うアクションなのでSecondViewController上にボタンを一つ配置してください。
-
-次にSampleViewController上部にアイコンが "Sample View Controller", "First Responder", "Exit" などが並んでいると思うのですが、この中からExitを右クリックするとパネルが表示されます。
-ここに表示されているSegueがSampleViewControllerに巻き戻ってくることのできるSegueとなります。おそらくここに先ほど定義したメソッドが表示されていると思います。このメソッドをドラッグアンドドロップで今追加したボタンと接続します。
+次にSampleViewController上部にアイコンが "Sample View Controller", "First Responder", "Exit" などが並んでいると思うのですが、この中からExitを右クリックするとパネルが表示されます。  
+ここに表示されているSegueがSampleViewControllerに巻き戻ってくることのできるSegueとなります。  
+おそらくここに先ほど定義したメソッドが表示されていると思います。  
+このメソッドをドラッグアンドドロップで今追加したボタンと接続します。
 
 ![img](./images/1_4_1/image7.png)
 
-このように接続を行うことができれば、作業は完了です。Runボタンから実行し、今追加したボタンをタップするとモーダルが閉じると思います。
+このように接続を行うことができれば、作業は完了です。  
+Runボタンから実行し、今追加したボタンをタップするとモーダルが閉じると思います。  
 無事閉じれば完了です。
 
 ### 演習課題
@@ -407,3 +408,9 @@ segue経由で画面を表示するときのdelegateの設定は `prepare(for:se
 ##### 回答
 
 回答については [samples/day1/sample1-4-1/VCCustomization](../../samples/day1/sample1-4-1) をごらんください。
+
+# 参考
+- [UIViewController Class Reference](http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html) | 
+- [View Controller Programming Guide for iOS](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/TheViewControllerHierarchy.html#//apple_ref/doc/uid/TP40007457-CH33-SW1)
+- [mixi-inc/iOSTraining 1.4 UIViewController2 ModalViewController (storyboard)](https://github.com/mixi-inc/iOSTraining/wiki/1.4-UIViewController2-ModalViewController-(storyboard))
+- https://developer.apple.com/design/human-interface-guidelines/patterns/modality/
