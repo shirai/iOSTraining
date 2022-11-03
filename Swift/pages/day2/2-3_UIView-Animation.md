@@ -13,8 +13,6 @@ UIView クラスのアニメーションメソッドを使うことで簡単に 
 > alpha | ビューの透明度を徐々に変更する場合は、このプロパティを変更します。
 > backgroundColor | ビューの背景色を変更する場合は、このプロパティを変更します。
 contentStretch | 利用可能な空間一杯にビューのコンテンツを引き延ばす方法を変更する場合は、このプロパティを変更します。
->
-> [iOS Viewプログラミングガイド](https://developer.apple.com/jp/devcenter/ios/library/documentation/ViewPG_iPhoneOS.pdf)より引用
 
 ## アニメーションブロック
 

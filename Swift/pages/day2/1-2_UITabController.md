@@ -12,7 +12,6 @@
 UITabBarController は TabBar インタフェースを用いて ViewController を管理するコンテナです。
 
 > ![tabController2](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/2.2/tabController2.png)
-> [View Controller Programming Guide for iOS](https://developer.apple.com/jp/documentation/ViewControllerPGforiOS.pdf) から引用
 
 UITabBarController における重要な property と method は以下の通りです。
 
@@ -32,7 +31,6 @@ viewControllers に 5 つ以上の ViewController を管理させる場合、Tab
 
 > ![tabBarItem](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/2.2/tabBarItem.png)
 
-> [iOS View Controllerプログラミングガイド](https://developer.apple.com/jp/documentation/ViewControllerPGforiOS.pdf) から引用
 
 FirstViewController.swift
 ```swift
@@ -69,8 +67,6 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 ## tab のバッジ
 > ![tabBadge](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/2.2/tabBadge.png)
 
-> [iOS View Controllerプログラミングガイド](https://www.google.co.jp/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&ved=0CDMQFjAA&url=http%3A%2F%2Fdeveloper.apple.com%2Fjp%2Fdevcenter%2Fios%2Flibrary%2Fdocumentation%2FViewControllerPGforiPhoneOS.pdf&ei=UGlnUYi7K87ykAXXiYCQAQ&usg=AFQjCNGdaDn2IS1bJpHD08rsGEroiXr9RQ&sig2=qKCoJdJvpNipFuAD2NXfQw&bvm=bv.45107431,d.dGI) から引用
-
 tabBar の上にバッジを表示することが可能です。
 
 ```swift
@@ -79,29 +75,28 @@ tabBarItem.badgeValue = "5"
 
 # Storyboardを用いた方法
 Storyboardを用いることで、視覚的にTabBarControllerとその中に入るViewControllerをデザインすることができます。
-プロジェクトテンプレートから作成するときに"Tabbed Application"を選ぶと、起動時にTabBarControllerが表示されるアプリケーションが作成されます。
+iOS→Appを選択してNextをクリックし、開発画面のMain.storyboardからtabBarController作成します。
 
 ![img](./images/1_2/image1.png)
 
+Main.storyboardに移動したら、iPhone画面をクリックして、Xcodeと書かれている上記メニュー欄の『Editor』をクリックします。『Editor』を選択後は、『Embed In』➡︎『Tab Bar Controller』をクリックしてください。
 
-またそのUIはMain.storyboardに記載されています。
+![img](./images/1_2/image2.png)
 
-![img](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/2.2/storyboard1.png)
-
+これで『Tab Bar Controller』画面が表示されました。
+![img](./images/1_2/image3.png)
 
 新しくViewControllerを追加する際は、ViewControllerをstoryboard上に追加し、Tab Bar Controller から controlを押しながらViewControllerへドラッグします
 
-![img](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/2.2/storyboard2.png)
-
+![img](./images/1_2/image4.png)
 
 その後、segueは "view controllers" を選択します。
 
-![img](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/2.2/segue.png)
-
+![img](./images/1_2/image5.png)
 
 このように追加したViewControllerにSegueが追加されていれば完了です。
 
-![img](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/2.2/storyboard3.png)
+![img](./images/1_2/image6.png)
 
 
 # 演習
