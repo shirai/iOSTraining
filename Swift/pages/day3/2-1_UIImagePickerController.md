@@ -1,18 +1,6 @@
-> 参考 [mixi-inc/iOSTraining 5.1 UIImagePickerController](https://github.com/mixi-inc/iOSTraining/wiki/5.1-UIImagePickerController)
-
-### class reference
-
-[UIImagePickerController Class Reference](https://developer.apple.com/reference/uikit/uiimagepickercontroller)
-
-[UIImagePickerController Delegate Protocol](https://developer.apple.com/reference/uikit/uiimagepickercontrollerdelegate#//apple_ref/occ/intf/UIImagePickerControllerDelegate)
-
 ### プログラミングガイド
-
-[カメラ操作のプログラ ミング（iOS用）につ いて](https://developer.apple.com/jp/devcenter/ios/library/documentation/CameraAndPhotoLib_TopicsForIOS.pdf)
-
 UIImagePickerController を使って iPhone の中にあるメディアを参照してみましょう。
-
-（UIImagePicker を使うことでデバイスのカメラ機能も呼び出すことが出来ますが、実機のみの確認となりますので本研修からは省略します）
+（UIImagePicker を使うことでデバイスのカメラ機能も呼び出すことが出来ますが、実機のみの確認となりますので本資料からは省略します）
 
 ## プライバシー情報へのアクセス
 
@@ -21,7 +9,8 @@ iOS10からプライバシー情報へアクセスする際に、Info.plistに�
 ![](./images/2_1/image1.png)
 
 これを明記しなかった場合、プライバシー情報にアクセスした際にクラッシュします。  
-フォトライブラリにアクセス刷る場合は`NSPhotoLibraryUsageDescription`を記述します。
+フォトライブラリにアクセスする場合は`NSPhotoLibraryUsageDescription`を記述します。
+※
 
 ```
 <key>NSPhotoLibraryUsageDescription</key>
@@ -71,11 +60,11 @@ func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMe
 を実装して、写真選択完了のイベントを取得しましょう。
 
 ```swift
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true, completion: nil)
-
-        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        imageView.image = didFinishPickingMediaWithInfo[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as? UIImage
     }
 }
 ```
@@ -97,3 +86,7 @@ photo 選択の場合 info の中身
 
 下図のような画面遷移を実装してください。
 ![practice](https://raw.github.com/mixi-inc/iOSTraining/master/Doc/Images/5.1/practice.png)
+
+### 参考
+- [UIImagePickerController Class Reference](https://developer.apple.com/reference/uikit/uiimagepickercontroller)
+- [UIImagePickerController Delegate Protocol](https://developer.apple.com/reference/uikit/uiimagepickercontrollerdelegate#//apple_ref/occ/intf/UIImagePickerControllerDelegate)
