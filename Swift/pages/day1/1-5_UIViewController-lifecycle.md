@@ -2,7 +2,7 @@
 
 参考 : [UIViewController Class Reference](https://developer.apple.com/reference/uikit/uiviewcontroller) | [ViewController プログラミングガイド](https://developer.apple.com/jp/documentation/ViewControllerPGforiOS.pdf)
 
-## ライフサイクル
+## Viewのライフサイクル
 
 UIViewControllerが生成され、表示、レイアウト調整、非表示、破棄のようにUIViewControllerは状態がいくつか遷移します。
 その一連の流れのライフサイクルについて解説します。
@@ -131,3 +131,13 @@ deinit {
     print("dealloc");
 }
 ```
+
+## アプリのライフサイクル
+また、UIViewControllerだけでなく、アプリ自体にもライフサイクルが存在し、それはAppDelegateで管理されます。
+アプリのライフサイクルは以下の通りです。
+
+> ![Figure 1Valid State Transitions](https://docs-assets.developer.apple.com/published/c834d5ac04/scene-state@2x.png)  
+> [Managing your app’s life cycle](https://developer.apple.com/documentation/uikit/app_and_environment/managing_your_app_s_life_cycle)より
+
+各ライフサイクルについて、AppDelegateでどのように受け取るかは以下を参考にしてください。
+[iOS アプリのライフサイクルを理解しよう](https://yamatooo.blog/entry/2020/09/28/083000)
