@@ -1,4 +1,4 @@
-# iOS Development Training Course in Swift3
+# iOS Development Training Course
 
 SwiftでのiOSアプリ開発の基礎知識と実務スキルを身に付けるトレーニングコース
 
@@ -9,10 +9,10 @@ SwiftでのiOSアプリ開発の基礎知識と実務スキルを身に付ける
 
 ### 環境
 
-* Xcode8.1以降
-* Swift3
+* Xcode13.2以降
+* Swift5
 
-## 1日目
+## Step1
 
 #### 項目
 
@@ -44,7 +44,7 @@ SwiftでのiOSアプリ開発の基礎知識と実務スキルを身に付ける
 - 課題 [HomeWork 1.2 UIViewControllerとModalViewController](https://github.com/mixi-inc/iOSTraining/wiki/HomeWork-1.2-UIViewController%E3%81%A8ModalViewController)  
  プロジェクト [day1/homework](./Swift/before/day1/homework)
 
-## 2日目
+## Step2
 
 #### 項目
 
@@ -104,7 +104,7 @@ SwiftでのiOSアプリ開発の基礎知識と実務スキルを身に付ける
 * 課題 [HomeWork 3.1 UIScrollView](./Swift/pages/day2/HomeWork-UIScrollView.md)  
 プロジェクト [day2/homework](./Swift/before/day2/homework)
 
-## 3日目
+## Step3
 
 #### 項目
 
@@ -168,7 +168,7 @@ SwiftでのiOSアプリ開発の基礎知識と実務スキルを身に付ける
 * 課題 [4.3 WKWebView](./Swift/pages/day3/4-3_WKWebView.md)  
  プロジェクト [day3/homework](./Swift/before/day3/homework)
 
-## 4日目
+## Step4
 
 1. 開発ツール
 
